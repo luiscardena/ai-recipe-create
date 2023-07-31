@@ -1,3 +1,51 @@
+const fs = require("fs");
+const https = require("https");
+const path = require("path");
+
+// Replace with the remote base URL where your files are hosted
+const remoteBaseUrl = "https://airecipeviews.luispatriciodev.repl.co/views";
+
+// File structure definition
+const fileStructure = {
+  views: {
+    pages: ["iFrameRedirect.ejs", "index.ejs", "process.ejs"],
+    partials: ["footer.ejs", "head.ejs", "header.ejs"],
+  },
+};
+
+function createFolderStructure(folderStructure, currentPath) {
+  for (const folderName in folderStructure) {
+    const folderPath = path.join(currentPath, folderName);
+    fs.mkdirSync(folderPath, { recursive: true });
+    if (Array.isArray(folderStructure[folderName])) {
+      downloadFiles(folderPath, folderStructure[folderName]);
+    } else {
+      createFolderStructure(folderStructure[folderName], folderPath);
+    }
+  }
+}
+
+function downloadFiles(folderPath, files) {
+  for (const file of files) {
+    const fileUrl = `${remoteBaseUrl}/${folderPath.replace("./", "")}/${file}`;
+    const filePath = path.join(folderPath, file);
+    const fileStream = fs.createWriteStream(filePath);
+
+    https.get(fileUrl, (res) => {
+      if (res.statusCode === 200) {
+        res.pipe(fileStream);
+      } else {
+        console.error(`Failed to download file: ${fileUrl}`);
+      }
+    });
+  }
+}
+
+// Start downloading
+if (process.env["download"] == "true") {
+  createFolderStructure(fileStructure, "./");
+}
+
 var axios = require("axios");
 var express = require("express");
 var app = express();

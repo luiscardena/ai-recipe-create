@@ -13,9 +13,9 @@ app.set('view engine', 'ejs');
 // index page
 app.get('/', function(req, res) {
   if (req.query.setID) {
-    res.render('pages/index');
+    res.render(path.join(__dirname, "pages/index"));
   } else {
-    res.render('pages/index', {
+    res.render(path.join(__dirname, "pages/index"), {
       id: req.query.preset
     });
   }
@@ -73,11 +73,11 @@ app.use('/waiting', function(req, res) {
   
   axios.request(options).then(function (response) {
     if (response.data.data.status == "draft") {
-      res.render('pages/process', {
+      res.render(path.join(__dirname, "pages/process"), {
         processDetail: 'Generating your recipe using AI...'
       });
     } else {
-      res.render('pages/iFrameRedirect', {
+      res.render(path.join(__dirname, "pages/iFrameRedirect"), {
         recipeID: req.path
       });
     }

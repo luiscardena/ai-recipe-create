@@ -8,17 +8,14 @@ app.use(express.urlencoded({ extended: true }));
 // set the view engine to ejs
 app.set("view engine", "ejs");
 
-// Serve static assets from the 'public' folder
-app.use(express.static("public"));
-
 // use res.render to load up an ejs view file
 
 // index page
 app.get("/", function (req, res) {
   if (req.query.setID) {
-    res.render(path.join(__dirname, "pages/index"));
+    res.render("pages/index");
   } else {
-    res.render(path.join(__dirname, "pages/index"), {
+    res.render("pages/index", {
       id: req.query.preset,
     });
   }
@@ -77,11 +74,11 @@ app.use("/waiting", function (req, res) {
     .request(options)
     .then(function (response) {
       if (response.data.data.status == "draft") {
-        res.render(path.join(__dirname, "pages/process"), {
+        res.render("pages/process", {
           processDetail: "Generating your recipe using AI...",
         });
       } else {
-        res.render(path.join(__dirname, "pages/iFrameRedirect"), {
+        res.render("pages/iFrameRedirect", {
           recipeID: req.path,
         });
       }

@@ -7,8 +7,8 @@
     <!--<iframe class="absolute top-0 bottom-0 left-0 right-0 h-screen w-screen" src="https://recipesai.co/" frameborder="0"></iframe>-->
     <header><%- include('../partials/header'); %></header>
     <main>
-      <div class="relative z-10" x-data="{ isOpen: false }" aria-labelledby="modal-title" role="dialog" aria-modal="true">
-        <button type="button" @click="isOpen = !isOpen" class="pointer-click">Options</button>
+      <div class="relative z-10" x-data="{ isOpen: false }" x-init="setTimeout(() => isOpen = true, 10)" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+        <button type="button" x-on:click="isOpen = !isOpen" class="pointer-click">Options</button>
         <div
           x-show="isOpen"
           x-transition:enter="ease-out duration-300"

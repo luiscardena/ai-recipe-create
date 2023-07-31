@@ -17,3 +17,12 @@
   }
 </style>
 <script src="//unpkg.com/alpinejs" defer></script>
+<script>
+  function closeModalAndCloseFrame() {
+    const isOpen = Alpine.store("isOpen"); // Get the isOpen value from Alpine store
+    isOpen = false; // Set isOpen to false
+    setTimeout(() => {
+      window.parent.postMessage("close", "*"); // Close frame on parent document after 300ms
+    }, 300);
+  }
+</script>

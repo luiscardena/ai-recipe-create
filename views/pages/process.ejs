@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" class="bg-transparent">
+  <head>
+    <%- include('../partials/head'); %>
+  </head>
+  <body class="container bg-transparent">
+    <header>
+      <%- include('../partials/header'); %>
+    </header>
+    <main>
+      
+      <div class="relative z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+        <div class="fixed inset-0 bg-slate-500 dark:bg-slate-900 bg-opacity-75 dark:bg-opacity-75 transition-opacity"></div>
+      
+        <div class="fixed inset-0 z-10 overflow-y-auto">
+          <div class="flex h-full min-h-full items-center justify-center p-4 text-center sm:items-center sm:p-0">
+            <div class="my-8 flex w-full max-w-lg transform flex-col overflow-hidden rounded-2xl bg-white text-left shadow-xl transition-all dark:bg-slate-600">
+              <div class="-h-full relative bg-white px-4 pb-4 pt-5 text-black dark:bg-slate-700 dark:text-white sm:p-6">
+                <h2 class="mb-2 text-2xl font-semibold tracking-tight">Generating your recipe...</h2>
+                <!--<h3>Please wait white the AI generates your recipe.</h3>-->
+                <div class="prose dark:prose-invert my-2">
+                  <pre class="whitespace-normal">
+                    <code><%= processDetail %></code>
+                  </pre>
+                </div>
+                <h3 class="font-semibold">DO NOT CLOSE THIS WINDOW OR CHANGE TAB.</h3>
+              </div>
+              <div class="flex flex-col-reverse bg-slate-50 px-4 py-4 dark:bg-slate-600 sm:flex-row-reverse sm:px-6 sm:py-3">
+                <button type="button" class="mt-3 inline-flex w-full cursor-not-allowed items-center justify-center rounded-full border border-blue-400 bg-blue-600 px-4 py-2 text-base font-medium text-white opacity-75 shadow-sm transition-colors hover:border-blue-500 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:ring-offset-slate-600 sm:ml-3 sm:mt-0 sm:w-auto sm:text-sm" disabled="">
+                  <svg class="-ml-1 mr-3 h-5 w-5 animate-spin text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                  </svg>
+                  Generating
+                </button>
+                <button type="button" class="inline-flex w-full cursor-not-allowed items-center justify-center rounded-full border border-slate-300 bg-white px-4 py-2 text-base font-medium text-slate-700 opacity-75 shadow-sm transition-colors hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 dark:border-slate-400 dark:bg-slate-500 dark:text-white dark:ring-offset-slate-600 dark:hover:border-slate-500 dark:hover:bg-slate-700 sm:ml-3 sm:w-auto sm:text-sm" disabled="">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="mr-2 h-6 w-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 15.75L3 12m0 0l3.75-3.75M3 12h18" />
+                  </svg>
+                  Cancel
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+    </main>
+    <footer>
+      <%- include('../partials/footer'); %>
+    </footer>
+  </body>
+</html>

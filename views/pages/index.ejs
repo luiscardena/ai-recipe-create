@@ -9,7 +9,7 @@
     <main>
       <div
         class="relative z-10"
-        x-data="{ isOpen: false, closeModal: function() { isOpen = false; setTimeout(() => { window.parent.postMessage('close', '*'); }, 300); } }"
+        x-data="{ isOpen: false, closeModal: function() { isOpen = false; setTimeout(() => { parent.postMessage('removeIframe', '*'); }, 300); } }"
         x-init="setTimeout(() => isOpen = true, 10)"
         aria-labelledby="modal-title"
         role="dialog"

@@ -7,7 +7,14 @@
     <!--<iframe class="absolute top-0 bottom-0 left-0 right-0 h-screen w-screen" src="https://recipesai.co/" frameborder="0"></iframe>-->
     <header><%- include('../partials/header'); %></header>
     <main>
-      <div class="relative z-10" x-data="{ isOpen: false }" x-init="setTimeout(() => isOpen = true, 10)" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+      <div
+        class="relative z-10"
+        x-data="{ isOpen: false, closeModal: function() { isOpen = false; setTimeout(() => { window.parent.postMessage('close', '*'); }, 300); } }"
+        x-init="setTimeout(() => isOpen = true, 10)"
+        aria-labelledby="modal-title"
+        role="dialog"
+        aria-modal="true"
+      >
         <div
           x-show="isOpen"
           x-transition:enter="ease-out duration-300"
@@ -68,7 +75,7 @@
                   </button>
                   <button
                     type="button"
-                    onclick="closeModalAndCloseFrame()"
+                    x-on:click="isOpen = false"
                     class="inline-flex w-full items-center justify-center rounded-full border border-slate-300 bg-white px-4 py-2 text-base font-medium text-slate-700 shadow-sm transition-colors hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 dark:border-slate-400 dark:bg-slate-500 dark:text-white dark:ring-offset-slate-600 dark:hover:border-slate-500 dark:hover:bg-slate-700 sm:ml-3 sm:w-auto sm:text-sm"
                   >
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="mr-2 h-6 w-6">
